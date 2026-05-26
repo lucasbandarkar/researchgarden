@@ -53,7 +53,7 @@
         </article>
 
         <article class="paper-entry" data-id="knowledge_localization" data-title="Knowledge Localization|in MoE LLMs" data-venue="arXiv 2026"
-            data-url="https://arxiv.org/abs/2603.17102" data-parent="multilingual_routing" data-is-left-child="1" data-latest="1"
+            data-url="https://arxiv.org/abs/2603.17102" data-parent="multilingual_routing" data-is-left-child="1"
             data-coauthors="Alan Ansell, Trevor Cohn"
             data-full-title="Knowledge Localization in Mixture-of-Experts LLMs Using Cross-Lingual Inconsistency"
             data-summary="Uses cross-lingual inconsistency as an interpretability signal for MoE models. By contrasting languages where a model succeeds or fails on the same factual query, the method identifies small sets of experts that causally matter for recalling specific knowledge.">
@@ -86,12 +86,12 @@
         </article>
 
         <!-- ===== Evaluation & Benchmarking ===== -->
-        <article class="paper-entry" data-id="belebele" data-title="BELEBELE|Benchmark" data-venue="ACL 2024"
+        <article class="paper-entry" data-id="belebele" data-title="Belebele|Benchmark" data-venue="ACL 2024"
             data-url="https://aclanthology.org/2024.acl-long.44/"
             data-root-node="1" data-root-name="Evaluation &amp;|Benchmarking" data-root-color="#FFD166"
             data-coauthors="Davis Liang, Benjamin Muller, Mikel Artetxe, Satya Narayan Shukla, Donald Husa, Naman Goyal, Abhinandan Krishnan, Luke Zettlemoyer, Madian Khabsa"
-            data-full-title="The BELEBELE Benchmark: a Parallel Reading Comprehension Dataset in 122 Language Variants"
-            data-summary="Introduces a fully parallel multiple-choice reading comprehension benchmark spanning 122 language variants. BELEBELE enables direct comparison of multilingual understanding across high-, medium-, and low-resource languages."
+            data-full-title="The Belebele Benchmark: a Parallel Reading Comprehension Dataset in 122 Language Variants"
+            data-summary="Introduces a fully parallel multiple-choice reading comprehension benchmark spanning 122 language variants. Belebele enables direct comparison of multilingual understanding across high-, medium-, and low-resource languages."
             data-links-arxiv="https://arxiv.org/abs/2308.16884"
             data-links-website="https://facebookresearch.github.io/belebele/"
             data-links-code="https://github.com/facebookresearch/belebele"
@@ -106,18 +106,9 @@
         </article>
 
         <!-- ===== NLU Foundations & Event Extraction ===== -->
-        <article class="paper-entry" data-id="snare" data-title="SNaRe|Event Detection" data-venue="EMNLP 2025"
-            data-url="https://aclanthology.org/2025.emnlp-main.1039/"
-            data-root-node="1" data-root-name="NLU Foundations &amp;|Event Extraction" data-root-color="#F28482"
-            data-coauthors="Tanmay Parekh, Yuxuan Dong, Artin Kim, I-Hung Hsu, Kai-Wei Chang, Nanyun Peng"
-            data-full-title="SNaRe: Domain-aware Data Generation for Low-Resource Event Detection"
-            data-summary="Develops domain-aware data generation for low-resource event detection. The work targets event extraction settings where labeled domain-specific data is scarce and uses generation to improve detection performance."
-            data-links-arxiv="https://arxiv.org/abs/2502.17394"
-            data-links-code="https://github.com/PlusLabNLP/SNaRe">
-        </article>
-
         <article class="paper-entry" data-id="headline_grouping" data-title="Headline Grouping" data-venue="NAACL 2021"
-            data-url="https://aclanthology.org/2021.naacl-main.255/" data-parent="snare" data-is-left-child="1"
+            data-url="https://aclanthology.org/2021.naacl-main.255/"
+            data-root-node="1" data-root-name="NLU Foundations &amp;|Event Extraction" data-root-color="#F28482"
             data-coauthors="Philippe Laban, Marti Hearst"
             data-full-title="News Headline Grouping as a Challenging NLU Task"
             data-summary="Introduces headline grouping as an NLU task: deciding whether headlines refer to the same real-world event. The task is challenging because headlines compress, frame, and omit event details in ways that make semantic grouping non-trivial."
@@ -126,8 +117,17 @@
             data-links-data="https://huggingface.co/datasets/hlgd">
         </article>
 
+        <article class="paper-entry" data-id="snare" data-title="SNaRe|Event Detection" data-venue="EMNLP 2025"
+            data-url="https://aclanthology.org/2025.emnlp-main.1039/" data-parent="headline_grouping"
+            data-coauthors="Tanmay Parekh, Yuxuan Dong, Artin Kim, I-Hung Hsu, Kai-Wei Chang, Nanyun Peng"
+            data-full-title="SNaRe: Domain-aware Data Generation for Low-Resource Event Detection"
+            data-summary="Develops domain-aware data generation for low-resource event detection. The work targets event extraction settings where labeled domain-specific data is scarce and uses generation to improve detection performance."
+            data-links-arxiv="https://arxiv.org/abs/2502.17394"
+            data-links-code="https://github.com/PlusLabNLP/SNaRe">
+        </article>
+
         <article class="paper-entry" data-id="coherence_shuffle" data-title="Coherence &amp;|Shuffle Test" data-venue="ACL 2021"
-            data-url="https://aclanthology.org/2021.acl-short.134/" data-parent="snare"
+            data-url="https://aclanthology.org/2021.acl-short.134/" data-parent="headline_grouping"
             data-coauthors="Philippe Laban, Luke Dai, Marti Hearst"
             data-full-title="Can Transformer Models Measure Coherence In Text? Re-Thinking the Shuffle Test"
             data-summary="Revisits the shuffle test for measuring discourse coherence with transformer models. The paper examines whether models genuinely capture coherence or exploit artifacts in how incoherent examples are constructed."
@@ -136,7 +136,7 @@
         </article>
     </details>
 
-    <script src="garden.js?v=4"></script>
+    <script src="garden.js?v=5"></script>
     <script>
         // Read papers from HTML data attributes
         var papers = [];
@@ -168,69 +168,7 @@
             if (Object.keys(additional_links).length > 0) { paper.additional_links = additional_links; }
             papers.push(paper);
         });
-        // Find the latest paper id
-        var latest_id = null;
-        $('#paper_data .paper-entry[data-latest]').each(function() { latest_id = $(this).data('id'); });
-
         build_garden(papers);
-
-        // Add garden sign/stake next to the latest flower
-        if (latest_id && flower_positions[latest_id]) {
-            var pos = flower_positions[latest_id];
-            var sign_g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-            // Position below the label text (to the right of flower, under "arXiv")
-            var sx = pos.x - 75, sy = pos.y + garden_height + 28;
-            // Sign board
-            var board = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-            board.setAttribute('x', sx - 28); board.setAttribute('y', sy - 1);
-            board.setAttribute('width', '75'); board.setAttribute('height', '16');
-            board.setAttribute('rx', '2'); board.setAttribute('ry', '2');
-            board.setAttribute('fill', '#d4a843');
-            board.setAttribute('stroke', '#8B6914');
-            board.setAttribute('stroke-width', '0.8');
-            // Text on the sign
-            var sign_text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            sign_text.setAttribute('x', sx + 8);
-            sign_text.setAttribute('y', sy + 11);
-            sign_text.setAttribute('text-anchor', 'middle');
-            sign_text.setAttribute('fill', '#4a3000');
-            sign_text.setAttribute('font-size', '9');
-            sign_text.setAttribute('font-weight', '500');
-            sign_text.setAttribute('font-family', 'Roboto, sans-serif');
-            sign_text.textContent = '\u{1F331} Just planted!';
-            sign_g.appendChild(board);
-            sign_g.appendChild(sign_text);
-            sign_g.setAttribute('class', 'latest-sign');
-            sign_g.setAttribute('style', 'cursor:pointer');
-            sign_g.setAttribute('onclick', "open_paper('" + latest_id + "')");
-            $('#garden').append(sign_g);
-
-            // Add dewdrops around the latest flower
-            var dew_g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-            dew_g.setAttribute('class', 'dew-drops');
-            var fx = pos.x, fy = pos.y + garden_height;
-            var drops = [
-                {dx: 10, dy: 10, r: 3}
-            ];
-            drops.forEach(function(d) {
-                var drop = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                drop.setAttribute('cx', fx + d.dx);
-                drop.setAttribute('cy', fy + d.dy);
-                drop.setAttribute('r', d.r);
-                drop.setAttribute('fill', 'url(#dew_gradient)');
-                drop.setAttribute('stroke', 'rgba(255,255,255,0.6)');
-                drop.setAttribute('stroke-width', '0.5');
-                // White specular highlight
-                var spec = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                spec.setAttribute('cx', fx + d.dx - d.r * 0.25);
-                spec.setAttribute('cy', fy + d.dy - d.r * 0.3);
-                spec.setAttribute('r', d.r * 0.35);
-                spec.setAttribute('fill', 'rgba(255,255,255,0.85)');
-                dew_g.appendChild(drop);
-                dew_g.appendChild(spec);
-            });
-            $('#garden').append(dew_g);
-        }
 
         // Generate JSON-LD structured data from the same HTML source
         var ldItems = papers.map(function(p) {
