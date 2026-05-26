@@ -22,15 +22,11 @@
         <ellipse rx="10" ry="20" transform="rotate(315)" fill="[[COLOR]]" class="petal [[FLOWER_CLASS]]"/>
         <circle r="6" fill="url(#center_gradient)"/>
     </svg>
-    <div id="garden_title">Philippe's Research Garden <span id="garden_title_scroll_hint">Scroll →</span></div>
+    <div id="garden_title">Lucas's Research Garden <span id="garden_title_scroll_hint">Scroll →</span></div>
     <div id="garden_container">
         <svg id="garden" preserveAspectRatio="xMinYMin meet"></svg>
      </div>
      <div id="garden_scroll_hint">← scroll to explore →</div>
-     <div id="coauthor_hall_of_fame">
-        <div id="coauthor_title">Recurrent Coauthors ("Hall of Friends")</div>
-        <div id="coauthor_list"></div>
-    </div>
     <div id="paper_modal_backdrop" onclick="$('#paper_modal').fadeOut(200); $('#paper_modal_backdrop').fadeOut(200);"></div>
     <div id="paper_modal">
         <!-- a close icon at the top right -->
@@ -41,266 +37,106 @@
         <div id="paper_modal_links"></div>
     </div>
 
-    <div class="section">
-        <div class="section_title">Want your own Research Garden visualization?</div>
-        <p>
-            All you need is: (1) <a href="https://tingofurro.github.io/garden.css" target="_blank">garden.css</a>, (2) <a href="https://tingofurro.github.io/garden.js" target="_blank">garden.js</a>, and (3) <a href="https://github.com/tingofurro/tingofurro.github.io/blob/main/simple_garden.html" target="_blank">an HTML file</a>. In the HTML file, there's a javascript variable <code>var papers = [...];</code> that you can modify to include your own papers. If you end up using it, feel free to send me a link, so I can check it out!
-        </p>
-    </div>
-
-    <div class="section" id="reach_out">
-        <div class="section_title">Reach out!</div>
-
-        <p>
-            Thanks for visiting my website! Here are some reasons to reach out to me:
-            <ul>
-                <li><b>You're a researcher</b>, and you have a question about some of my work, or want to brainstorm, pitch a research project, debug an idea, etc.</li>
-                <li><b>You're a journalist</b>, and want an technical opinion on a topic I have expertise in. (See some articles I've been interviewed for <a href="https://www.nytimes.com/2023/11/06/technology/chatbots-hallucination-rates.html">NYTimes</a>, <a href="https://www.science.org/content/article/is-your-ai-hallucinating-new-approach-can-tell-when-chatbots-make-things-up">Science</a>, <a href="https://www.lemonde.fr/pixels/article/2024/06/17/faut-il-s-inquieter-des-hallucinations-des-ia-comme-chatgpt-ou-gemini_6240971_4408996.html">Le Monde</a>, <a href="https://spectrum.ieee.org/ai-sycophancy">IEEE Spectrum</a>, <a href="https://podcasts.apple.com/ca/podcast/like-your-new-best-friend-an-ai-chatbot/id1639175294?i=1000575694297">Podcast</a>)</li>
-                <li><b>You work at a startup</b>, and want technical expertise, either informally or as a board member/consultant. I've advised a few startups with products related to news reading, summarization, and factuality.</li>
-                <li><b>You work on NLP/HCI in NYC</b>, and want to grab a coffee to meet likeminded folks in the city.</li>
-            </ul>
-
-            This list is likely not exhaustive. When in doubt, reach out by email!
-        </p>
-    </div>
-
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Publication data as HTML (editable, crawlable, used by garden.js) -->
     <details id="paper_data">
     <summary>Selected Publications (click to expand)</summary>
-        <!-- ===== Interacting with AI (2023-now) ===== -->
-        <article class="paper-entry" data-id="flipflop" data-title="FlipFlop Experiment" data-venue="arXiv"
-            data-url="https://arxiv.org/abs/2311.08596"
-            data-root-node="1" data-root-name="Interacting with AI|2023-now" data-root-color="#D1BDFF"
-            data-coauthors="Lidiya Murakhovs'ka, Caiming Xiong, Chien-Sheng Wu"
-            data-full-title="Are You Sure? Challenging LLMs Leads to Performance Drops in The FlipFlop Experiment"
-            data-summary="What happens when you give an LLM a classification task, it gets it right, and you ask it 'Are you sure?'. Universally, LLMs tend to flip their answer: favoring to a superficial agreement with the user over being accurate. We connect the FlipFlop effect with the connect of sycophancy in LLMs, and show that finetuning is not a panacea to cure the issue, although it helps a bit.">
+        <!-- ===== Interpretability & Model Analysis (newest, leftmost) ===== -->
+        <article class="paper-entry" data-id="multilingual_routing" data-title="Multilingual Routing|in MoE" data-venue="ICLR 2026"
+            data-url="https://openreview.net/forum?id=ZoZR0x7tTD"
+            data-root-node="1" data-root-name="Interpretability &amp;|Model Analysis" data-root-color="#8FC7FF"
+            data-coauthors="Chenyuan Yang, Mohsen Fayyaz, Junlin Hu, Nanyun Peng"
+            data-full-title="Multilingual Routing in Mixture-of-Experts"
+            data-summary="Analyzes how MoE language models route multilingual inputs, finding language-specific routing at early and late layers and stronger cross-lingual alignment in the middle. The work connects routing similarity with multilingual performance and tests simple routing interventions that improve cross-lingual generalization."
+            data-links-arxiv="https://arxiv.org/abs/2510.04694">
         </article>
 
-        <article class="paper-entry" data-id="lost_in_conv" data-title="Lost in Conversation" data-venue="ICLR2026"
-            data-url="https://arxiv.org/abs/2505.06120" data-parent="flipflop"
-            data-coauthors="Hiroaki Hayashi, Yingbo Zhou, Jennifer Neville"
-            data-full-title="LLMs Get Lost In Multi-Turn Conversation"
-            data-summary="A large-scale simulation experiment with 15 LLMs. We show that on the exact same set of tasks, model performance degrades (39%!) in multi-turn underspecified conversation, compared to single-turn, fully-specified conversations. We find that this is because when models take a wrong turn, they get lost and do not recover (reliability issue rather than aptitude)."
-            data-links-code="https://github.com/microsoft/lost_in_conversation"
-            data-links-data="https://huggingface.co/datasets/microsoft/lost_in_conversation">
+        <article class="paper-entry" data-id="knowledge_localization" data-title="Knowledge Localization|in MoE LLMs" data-venue="arXiv 2026"
+            data-url="https://arxiv.org/abs/2603.17102" data-parent="multilingual_routing" data-is-left-child="1" data-latest="1"
+            data-coauthors="Alan Ansell, Trevor Cohn"
+            data-full-title="Knowledge Localization in Mixture-of-Experts LLMs Using Cross-Lingual Inconsistency"
+            data-summary="Uses cross-lingual inconsistency as an interpretability signal for MoE models. By contrasting languages where a model succeeds or fails on the same factual query, the method identifies small sets of experts that causally matter for recalling specific knowledge.">
         </article>
 
-        <article class="paper-entry" data-id="delegate52" data-title="DELEGATE52" data-venue="arxiv"
-            data-url="https://arxiv.org/abs/2604.15597" data-parent="lost_in_conv" data-latest="1"
-            data-coauthors="Tobias Schnabel, Jennifer Neville"
-            data-full-title="LLMs Corrupt Your Documents When You Delegate"
-            data-summary="We create work environments in 52 professional domains (such as crystallography, aviation, weaving, Python programming) and simulate long-horizon delegated workstreams to study current AI system readiness for delegated workflows (i.e., vibe-coding). We find that current LLMs corrupt documents during delegated workflows, and are not yet ready for delegation across diverse professional contexts."
-            data-links-code="https://github.com/microsoft/delegate52"
-            data-links-data="https://huggingface.co/datasets/microsoft/delegate52">
+        <article class="paper-entry" data-id="parametric_scripts" data-title="Parametric Knowledge|Across Scripts" data-venue="arXiv 2026"
+            data-url="https://arxiv.org/abs/2603.17070" data-parent="multilingual_routing"
+            data-coauthors="Alan Ansell, Trevor Cohn"
+            data-full-title="Large Reasoning Models Struggle to Transfer Parametric Knowledge Across Scripts"
+            data-summary="Shows that reasoning LLMs can struggle to transfer factual parametric knowledge across writing systems. The analysis points to script mismatch as a major predictor of transfer failure and explores post-training data that teaches models to reason through transliteration ambiguity.">
         </article>
 
-        <article class="paper-entry" data-id="userlm" data-title="UserLM" data-venue="ICLR2026"
-            data-url="https://arxiv.org/abs/2510.06552" data-parent="lost_in_conv"
-            data-coauthors="Tarek Naous, Wei Xu, Jennifer Neville"
-            data-full-title="Flipping the Dialogue: Training and Evaluating User Language Models"
-            data-summary="We train an 8b LLM specifically to simulate the user role in user-AI conversations. We find that this model is much more diverse in natural in simulating users than prompting assistant models (the standard approach). We argue for the development of better user-simulating models, as we show assistant models are limited in their simulation capabilities."
-            data-links-model="https://huggingface.co/microsoft/UserLM-8b">
+        <!-- ===== Modularity for Cross-Lingual Transfer ===== -->
+        <article class="paper-entry" data-id="layer_swapping" data-title="Layer Swapping|for Zero-Shot XLT" data-venue="ICLR 2025 Spotlight"
+            data-url="https://openreview.net/forum?id=vQhn4wrQ6j"
+            data-root-node="1" data-root-name="Modularity for|Cross-Lingual Transfer" data-root-color="#B5E48C"
+            data-indirect-connections="multilingual_routing"
+            data-coauthors="Benjamin Muller, Pritish Yuvraj, Rui Hou, Nayan Singhal, Hongjiang Lv, Bing Liu"
+            data-full-title="Layer Swapping for Zero-Shot Cross-Lingual Transfer in Large Language Models"
+            data-summary="Studies whether cross-lingual transfer can be improved by separating language-specific and task-specific parameters. The method swaps selected layers between models to transfer capabilities zero-shot across languages."
+            data-links-arxiv="https://arxiv.org/abs/2410.01335">
         </article>
 
-        <!-- ===== Writing/Editing (2020-now) ===== -->
-        <article class="paper-entry" data-id="keepitsimple" data-title="Keep It Simple" data-venue="ACL2021"
-            data-url="https://arxiv.org/abs/2107.03444"
-            data-root-node="1" data-root-name="Writing/Editing|2020-now" data-root-color="#B3F5BC"
-            data-coauthors="Tobias Schnabel, Paul Bennett, Marti A. Hearst"
-            data-full-title="Keep it Simple: Unsupervised Simplification of Multi-Paragraph Text"
-            data-summary="First baby steps in the field of simplification (a sister task to summarization). We approached it in an entirely unsupervised way (a la Summary Loop), by crafting rewards for fluency, relevance, and simplicity, and optimizing through RL. Neat Finding: an algorithmic improvement to the popular SCST algorithm (k-SCST) which yielded much more stable training, and better models. Also: a focus on paragraph-level (rather than sentence-level) simplification, which was not so common at the time!"
-            data-links-code="https://github.com/tingofurro/keep_it_simple"
-            data-links-video="https://aclanthology.org/2021.acl-long.498.mp4"
-            data-links-model="https://huggingface.co/philippelaban/keep_it_simple">
+        <article class="paper-entry" data-id="model_merging" data-title="Model Merging|for XLT" data-venue="MRL at EMNLP 2025"
+            data-url="https://aclanthology.org/2025.mrl-main.10/" data-parent="layer_swapping"
+            data-coauthors="Nanyun Peng"
+            data-full-title="The Unreasonable Effectiveness of Model Merging for Cross-Lingual Transfer in LLMs"
+            data-summary="Investigates modular post-training and model merging for low-resource cross-lingual transfer. The paper finds that task and language capabilities can often be composed by training separate experts and merging them, with layer-swapping emerging as a surprisingly strong method."
+            data-links-arxiv="https://arxiv.org/abs/2505.18356">
         </article>
 
-        <article class="paper-entry" data-id="swipe" data-title="SWiPE" data-venue="ACL2023"
-            data-url="https://arxiv.org/abs/2305.19204" data-parent="keepitsimple"
-            data-coauthors="Jesse Vig, Wojciech Kryscinski, Caiming Xiong, Chien-Sheng Wu"
-            data-full-title="SWiPE: A Dataset for Document-Level Simplification of Wikipedia Pages"
-            data-summary="Improved the extraction process of simplification document pairs from Simple Wikipedia, showing that Swiki is a great resource to study the simplification process. Prior work had mostly disregarded SWiki in favor of less publicly available datasets such as Newsela."
-            data-links-code="https://github.com/salesforce/simplification">
+        <!-- ===== Evaluation & Benchmarking ===== -->
+        <article class="paper-entry" data-id="belebele" data-title="BELEBELE|Benchmark" data-venue="ACL 2024"
+            data-url="https://aclanthology.org/2024.acl-long.44/"
+            data-root-node="1" data-root-name="Evaluation &amp;|Benchmarking" data-root-color="#FFD166"
+            data-coauthors="Davis Liang, Benjamin Muller, Mikel Artetxe, Satya Narayan Shukla, Donald Husa, Naman Goyal, Abhinandan Krishnan, Luke Zettlemoyer, Madian Khabsa"
+            data-full-title="The BELEBELE Benchmark: a Parallel Reading Comprehension Dataset in 122 Language Variants"
+            data-summary="Introduces a fully parallel multiple-choice reading comprehension benchmark spanning 122 language variants. BELEBELE enables direct comparison of multilingual understanding across high-, medium-, and low-resource languages."
+            data-links-arxiv="https://arxiv.org/abs/2308.16884"
+            data-links-website="https://facebookresearch.github.io/belebele/"
+            data-links-code="https://github.com/facebookresearch/belebele"
+            data-links-data="https://huggingface.co/datasets/facebook/belebele">
         </article>
 
-        <article class="paper-entry" data-id="art_or_artifice" data-title="Art or Artifice" data-venue="CHI2024"
-            data-url="https://arxiv.org/abs/2309.14556" data-parent="swipe"
-            data-coauthors="Tuhin Chakrabarty, Chien-Sheng Wu"
-            data-full-title="Art or Artifice? Large Language Models and the False Promise of Creativity"
-            data-summary="Work led by Tuhin Chakrabarty as an intern at Salesforce Research. Are LLMs capable of high-quality creative fictional writing, to the level of short-stories published in the New Yorker. We designed a methodology to evaluate story quality (through rigorous manual evaluation by expert writers), and found a very large gap between professionally-written and AI-generated stories. Neat Finding: at the time, LLMs were not capable of even judging which stories were better than others, and tended to favor more bland AI-like writing."
-            data-links-code="https://github.com/salesforce/creativity_eval"
-            data-links-data_hf="https://huggingface.co/datasets/Salesforce/ttcw_creativity_eval"
-            data-links-video="https://dl.acm.org/doi/10.1145/3613904.3642731">
+        <article class="paper-entry" data-id="translation_proxy" data-title="Translation as|Evaluation Proxy" data-venue="arXiv 2026"
+            data-url="https://arxiv.org/abs/2601.11778" data-parent="belebele"
+            data-coauthors="Sheriff Issaka, Erick Rosas Gonzalez, Lieqi Liu, Evans Kofi Agyei, Nanyun Peng, David Ifeoluwa Adelani, Francisco Guzman, Saadia Gabriel"
+            data-full-title="Translation as a Scalable Proxy for Multilingual Evaluation"
+            data-summary="Tests whether translation quality can serve as a scalable first-pass proxy for broader multilingual capability. Across many models, benchmarks, and translation metrics, the paper finds strong correlations between translation performance and downstream multilingual task success.">
         </article>
 
-        <article class="paper-entry" data-id="ai_writing_idiosyncracies" data-title="Writing Idiosyncracies" data-venue="CHI2025"
-            data-url="https://arxiv.org/abs/2409.14509" data-parent="art_or_artifice" data-is-left-child="1"
-            data-coauthors="Tuhin Chakrabarty, Chien-Sheng Wu"
-            data-full-title="Can AI writing be salvaged? Mitigating Idiosyncrasies and Improving Human-AI Alignment in the Writing Process through Edits"
-            data-summary="Work led by Tuhin at Salesforce Research. Following up on Art or Artifice. Lowering our expectation from a story (1000+ words) to a single paragraph (100-200 words). We find in a controlled experiment that LLMs still struggle to generate high-quality creative writing even in shorter form. Neat finding: when allowing an LLM to: (1) draft, (2) detect issues, (3) edit them through executable edits, then LLMs are capable of improving their writing!"
-            data-links-code="https://github.com/salesforce/creativity_eval/">
+        <!-- ===== NLU Foundations & Event Extraction ===== -->
+        <article class="paper-entry" data-id="snare" data-title="SNaRe|Event Detection" data-venue="EMNLP 2025"
+            data-url="https://aclanthology.org/2025.emnlp-main.1039/"
+            data-root-node="1" data-root-name="NLU Foundations &amp;|Event Extraction" data-root-color="#F28482"
+            data-coauthors="Tanmay Parekh, Yuxuan Dong, Artin Kim, I-Hung Hsu, Kai-Wei Chang, Nanyun Peng"
+            data-full-title="SNaRe: Domain-aware Data Generation for Low-Resource Event Detection"
+            data-summary="Develops domain-aware data generation for low-resource event detection. The work targets event extraction settings where labeled domain-specific data is scarce and uses generation to improve detection performance."
+            data-links-arxiv="https://arxiv.org/abs/2502.17394"
+            data-links-code="https://github.com/PlusLabNLP/SNaRe">
         </article>
 
-        <article class="paper-entry" data-id="inksync" data-title="InkSync" data-venue="UIST2024"
-            data-url="https://arxiv.org/abs/2309.15337" data-parent="swipe"
-            data-indirect-connections="ai_writing_idiosyncracies"
-            data-coauthors="Jesse Vig, Marti A. Hearst, Caiming Xiong, Chien-Sheng Wu"
-            data-full-title="Beyond the Chat: Executable and Verifiable Text-Editing with LLMs"
-            data-summary="How do we imagine writing with an LLM should look like. We design the concept of 'executable edits' that an LLM-based system can propose, and design a framework to verify factual accuracy of these edits (Warn-Verify-Audit)."
-            data-links-demo_video="https://www.youtube.com/watch?v=q7lf5CIMyvE"
-            data-links-live_demo="https://inksync.salesforceresearch.ai/"
-            data-links-code="https://github.com/SalesforceAIResearch/inksync"
-            data-links-recorded_presentation="https://www.youtube.com/watch?v=3RMo1nWIqCY">
-        </article>
-
-        <article class="paper-entry" data-id="writing_quality_reward_models" data-title="Writing Quality Reward Models" data-venue="arXiv"
-            data-url="https://arxiv.org/abs/2504.07532" data-parent="ai_writing_idiosyncracies" data-is-left-child="1"
-            data-coauthors="Tuhin Chakrabarty, Chien-Sheng Wu"
-            data-full-title="AI-Slop to AI-Polish? Aligning Language Models through Edit-Based Writing Rewards and Test-time Computation"
-            data-summary="Work co-led with Tuhin Chakrabarty continuing our great CHI2025. In this work, we build out methods to evaluate *writing quality* in for fiction and non-fiction writing tasks. We release a model (WQRM) we believe is best-in-class at measuring writing quality, as confirmed by our benchmark results."
-            data-links-code="https://github.com/salesforce/creativity_eval/"
-            data-links-model="huggingface.co/models?search=wqrm"
-            data-links-data="https://github.com/salesforce/creativity_eval/tree/main/WritingRewards/WQ-benchmark-data">
-        </article>
-
-        <!-- ===== Summarization (2019-now) ===== -->
-        <article class="paper-entry" data-id="summaryloop" data-title="Summary Loop" data-venue="ACL2020"
-            data-url="https://arxiv.org/abs/2105.05361"
-            data-root-node="1" data-root-name="Summarization|2019-now" data-root-color="#FFE699"
-            data-indirect-connections="keepitsimple"
-            data-coauthors="Andrew Hsi, John Canny, Marti A. Hearst"
-            data-full-title="The Summary Loop: Learning to Write Abstractive Summaries Without Examples"
-            data-summary="My first foray into summarization! We designed an entirely unsupervised method for summarization that relied on RL optimization (before it was cool) to train a 'language model' (GPT2) to jointly optimize information coverage and fluency. Neat Idea: the most complex element to define was the Coverage scoring method, check it out in the paper."
-            data-links-video="https://slideslive.com/38929183/summary-loop-unsupervised-abstractive-summarization"
-            data-links-code="https://github.com/CannyLab/summary_loop"
-            data-links-models="https://huggingface.co/philippelaban/summary_loop46">
-        </article>
-
-        <article class="paper-entry" data-id="summac" data-title="SummaC" data-venue="TACL2021"
-            data-url="https://arxiv.org/abs/2111.09525" data-parent="summaryloop"
-            data-coauthors="Tobias Schnabel, Paul N. Bennett, Marti A. Hearst"
-            data-full-title="SummaC: Re-Visiting NLI-based Models for Inconsistency Detection in Summarization"
-            data-summary="First adventures with factuality/faithfulness/consistency in text generation and summarization. At the time, most of the work had shown NLI methods did not work reliably to detect factual errors in generated text, and relied instead on more complex QG/QA pipelines. The work shows that more modern NLI models, when used at the right granularity, are competitive and much faster to run. We released the two models and the benchmark we created (SummaC)."
-            data-links-video="https://aclanthology.org/2022.tacl-1.10.mp4"
-            data-links-code_data="https://github.com/tingofurro/summac">
-        </article>
-
-        <article class="paper-entry" data-id="summedits" data-title="SummEdits" data-venue="EMNLP2023"
-            data-url="https://arxiv.org/abs/2305.14540" data-parent="summac"
-            data-coauthors="Wojciech Kryściński, Divyansh Agarwal, Alexander R. Fabbri, Caiming Xiong, Shafiq Joty, Chien-Sheng Wu"
-            data-full-title="LLMs as Factual Reasoners: Insights from Existing Benchmarks and Beyond"
-            data-summary="First work leveraging LLMs (GPT-3.5-turbo)! Can we use an LLM as part of a benchmark creation process to lower the cost of data acquisition while maintaining quality. Neat Finding: we create a dataset for summary factual inconsistency detection that costs 20x less per sample with very high IAA. Most LLMs at the time struggled to beat near-random performance on SummEdits."
-            data-links-video="https://aclanthology.org/2023.emnlp-main.600.mp4"
-            data-links-data_hf="https://huggingface.co/datasets/Salesforce/summedits"
-            data-links-code="https://github.com/salesforce/factualNLG">
-        </article>
-
-        <article class="paper-entry" data-id="summary_of_a_haystack" data-title="Summary of a Haystack" data-venue="EMNLP2024"
-            data-url="https://arxiv.org/abs/2407.01370" data-parent="summedits" data-is-left-child="1"
-            data-coauthors="Alexander R. Fabbri, Caiming Xiong, Chien-Sheng Wu"
-            data-full-title="Summary of a Haystack: A Challenge to Long-Context LLMs and RAG Systems"
-            data-summary="How good are LLMs or RAG systems at dealing with long-context (~100k tokens) and precisely summarizing and citing back to relevant documents. Alex Fabbri and I very carefully synthesized Haystacks of documents to explore the subject. Neat Finding: in 2024, RAG vs. long-context LLMs is not a winner takes all (yet). RAGs are better when citation/attribution is important, whereas long-context single-step is more competitive when information (without citation) is desired."
-            data-links-data_hf="https://huggingface.co/datasets/Salesforce/summary-of-a-haystack"
-            data-links-code="https://github.com/salesforce/summary-of-a-haystack">
-        </article>
-
-        <article class="paper-entry" data-id="answer_engine_eval" data-title="Answer Engine Eval." data-venue="FAccT 2025"
-            data-url="https://arxiv.org/abs/2410.22349" data-parent="summary_of_a_haystack"
-            data-coauthors="Pranav Narayanan Venkit, Yilun Zhou, Yixin Mao, Chien-Sheng Wu"
-            data-full-title="Search Engines in an AI Era: The False Promise of Factual and Verifiable Source-Cited Responses"
-            data-summary="Work led by Pranav Venkit as an intern at Salesforce Research. Explored whether 'answer engines' (generative search engines, which are simply RAG-based summarization systems) capable of producing accurate and attributed answers to technical user queries. Neat Finding: the qualitative study led to a quantitative framework with ~8 metrics, most of which current answer engines struggle on."
-            data-links-code="https://github.com/SalesforceAIResearch/answer-engine-eval">
-        </article>
-
-        <article class="paper-entry" data-id="aggrefact" data-title="AggreFact" data-venue="ACL2023"
-            data-url="https://arxiv.org/abs/2205.12854" data-parent="summac"
-            data-coauthors="Liyan Tang, Tanya Goyal, Alexander R. Fabbri, Jiacheng Xu, Semih Yavuz, Wojciech Kryściński, Justin F. Rousseau, Greg Durrett"
-            data-full-title="Understanding Factual Errors in Summarization: Errors, Summarizers, Datasets, Error Detectors"
-            data-summary="Work led by Liyan Tang on creating a larger-scale benchmark for factuality in summarization (AggreFact) to better understand error types that occur across model generations. Neat Finding: the distribution of factual error types shifts with different generations of models. As generative models get better, the kinds of factual errors they make become more subtle... and more difficult to catch. (oh no!)"
-            data-links-video="https://aclanthology.org/2023.acl-long.650.mp4"
-            data-links-data="https://github.com/Liyan06/AggreFact">
-        </article>
-
-        <article class="paper-entry" data-id="minicheck" data-title="MiniCheck" data-venue="EMNLP2024"
-            data-url="https://arxiv.org/abs/2404.10774" data-parent="aggrefact"
-            data-indirect-connections="summedits, answer_engine_eval"
-            data-coauthors="Liyan Tang, Greg Durrett"
-            data-full-title="MiniCheck: Efficient Fact-Checking of LLMs on Grounding Documents"
-            data-summary="Work led by Liyan Tang. Very clever data synthesis process to create challenging (positive/negative) samples for factual inconsistency detection. When training a model on the synthetic data, we obtain a factual inconsistency checker as good as the top LLMs (Claude / GPT) but 300x cheaper to run!"
-            data-links-code="https://github.com/Liyan06/MiniCheck"
-            data-links-leaderboard="https://llm-aggrefact.github.io/"
-            data-links-model_hf="https://huggingface.co/bespokelabs/Bespoke-MiniCheck-7B"
-            data-links-data_hf="https://huggingface.co/datasets/lytang/LLM-AggreFact">
-        </article>
-
-        <!-- ===== Reading (2016-2023) ===== -->
-        <article class="paper-entry" data-id="newslens" data-title="NewsLens" data-venue="ACL2017 Workshop"
-            data-url="https://aclanthology.org/W17-2701.pdf"
-            data-root-node="1" data-root-name="Reading|2016-2023" data-root-color="#FA9189"
-            data-coauthors="Marti A. Hearst"
-            data-full-title="newsLens: building and visualizing long-ranging news stories"
-            data-summary="My first foray into news reading interfaces, presented at the News Workshop of ACL 2017. The work presents how a large-scale stream of news articles can be organized into evolving news timelines, how to name and visualize them.">
-        </article>
-
-        <article class="paper-entry" data-id="news_chatbot" data-title="News Chatbot" data-venue="ACL2020"
-            data-url="https://arxiv.org/abs/2105.05392" data-parent="newslens"
-            data-coauthors="John Canny, Marti A. Hearst"
-            data-full-title="What's The Latest? A Question-driven News Chatbot"
-            data-summary="For the NewsLens stories, what would it look like to 'chat' with a system about an evolving news story's that can have 1000+ articles (pre-ChatGPT !!). Neat Finding: if you recommend questions to users, they can have fairly long conversation, reading through more than an average article's length of content."
-            data-links-video="https://slideslive.com/38928615/whats-the-latest-a-questiondriven-news-chatbot">
-        </article>
-
-        <article class="paper-entry" data-id="newspod" data-title="Podcasts" data-venue="IUI2022"
-            data-url="https://arxiv.org/abs/2202.07146" data-parent="news_chatbot"
-            data-coauthors="Elicia Ye, Srujay Korlakunta, John Canny, Marti A. Hearst"
-            data-full-title="NewsPod: Automatic and Interactive News Podcasts"
-            data-summary="Taking Newslens and its chat to the next level: by exploring whether stories can be turned into conversational (multi-voice) and interactive (user can speak) podcasts. Neat Finding: using multiple voices when synthesizing speech lowers user fatigue, and adding a Q&A format reduces monotonicity. Users are sometimes willing to jump in and ask their own questions."
-            data-links-live_demo="https://newspod.github.io/"
-            data-links-interview_apple_podcast="https://podcasts.apple.com/ca/podcast/like-your-new-best-friend-an-ai-chatbot/id1639175294?i=1000575694297">
-        </article>
-
-        <article class="paper-entry" data-id="news_headline_grouping" data-title="Headline Grouping" data-venue="NAACL2021"
-            data-url="https://arxiv.org/abs/2105.05391" data-parent="news_chatbot"
-            data-coauthors="Marti A. Hearst"
+        <article class="paper-entry" data-id="headline_grouping" data-title="Headline Grouping" data-venue="NAACL 2021"
+            data-url="https://aclanthology.org/2021.naacl-main.255/" data-parent="snare" data-is-left-child="1"
+            data-coauthors="Philippe Laban, Marti Hearst"
             data-full-title="News Headline Grouping as a Challenging NLU Task"
-            data-summary="Focused work on a challenging NLP task related to news headline writing. Can we automatically detect when two headlines relate to the same real-world event? It happens to be challenging because of the complex process involved in crafting news headlines."
+            data-summary="Introduces headline grouping as an NLU task: deciding whether headlines refer to the same real-world event. The task is challenging because headlines compress, frame, and omit event details in ways that make semantic grouping non-trivial."
+            data-links-arxiv="https://arxiv.org/abs/2105.05391"
             data-links-code="https://github.com/tingofurro/headline_grouping"
-            data-links-data_hf="https://huggingface.co/philippelaban/headline_grouping"
-            data-links-video="https://aclanthology.org/2021.naacl-main.255.mp4">
+            data-links-data="https://huggingface.co/datasets/hlgd">
         </article>
 
-        <article class="paper-entry" data-id="discord_questions" data-title="Discord Questions" data-venue="EMNLP2022"
-            data-url="https://arxiv.org/abs/2211.05007" data-parent="news_headline_grouping"
-            data-coauthors="Chien-Sheng Wu, Lidiya Murakhovs'ka, Xiang 'Anthony' Chen, Caiming Xiong"
-            data-full-title="Discord Questions: A Computational Approach To Diversity Analysis in News Coverage"
-            data-summary="Given a set of news articles (and/or documents) that cover a common topic (news event), can we find key questions that surface when the sources agree, or disagree. Can these be used to surface the diversity in coverage that exists in the corpus? Neat Finding: even pre-ChatGPT, this was possible: over-generate 100+ questions, and filter out to the few that fit strict criteria."
-            data-links-video="https://aclanthology.org/2022.findings-emnlp.380.mp4"
-            data-links-code="https://github.com/salesforce/discord_questions"
-            data-links-data="https://huggingface.co/Salesforce/qa_consolidation"
-            data-links-models="https://huggingface.co/Salesforce/discord_qg">
-        </article>
-
-        <article class="paper-entry" data-id="assembly" data-title="Assembly" data-venue="CHI2023"
-            data-url="https://arxiv.org/abs/2302.08997" data-parent="discord_questions"
-            data-coauthors="Chien-Sheng Wu, Lidiya Murakhovs'ka, Xiang 'Anthony' Chen, Caiming Xiong"
-            data-full-title="Designing and Evaluating Interfaces that Highlight News Coverage Diversity Using Discord Questions"
-            data-summary="Once we have Discord Questions, how do we use them in practice in news reading interfaces, both for journalism professionals, and everyday newsreaders (the 'Assembly' interfaces). Neat Finding: we showed in a study with 100+ participants that the annotated article interface leads to better access to coverage diversity, while not being more complicated to use (success!)."
-            data-links-video="https://www.youtube.com/watch?v=s2mBv3xD7Lg">
-        </article>
-
-        <article class="paper-entry" data-id="diverse_summ" data-title="DiverseSumm" data-venue="NAACL2024"
-            data-url="https://arxiv.org/abs/2309.09369" data-parent="assembly"
-            data-indirect-connections="summary_of_a_haystack"
-            data-coauthors="Kung-Hsiang Huang, Alexander R. Fabbri, Prafulla Kumar Choubey, Caiming Xiong, Chien-Sheng Wu"
-            data-full-title="Embrace Divergence for Richer Insights: A Multi-document Summarization Benchmark and a Case Study on Summarizing Diverse Information from News Articles"
-            data-summary="Follow-up of Discord Questions and Assembly. Once we've found a topic of discord within a corpus of documents, how good are LLMs at describing this diversity when they summarize the information. Neat finding: LLMs are not so good at nuanced summarization, and tend to focus on information either at the top/bottom of their context window (arbitrary), or on predominantly represent opinion. Work led by Steeve Huang when he was an intern at Salesforce Research!"
-            data-links-code_data="https://github.com/salesforce/DiverseSumm">
+        <article class="paper-entry" data-id="coherence_shuffle" data-title="Coherence &amp;|Shuffle Test" data-venue="ACL 2021"
+            data-url="https://aclanthology.org/2021.acl-short.134/" data-parent="snare"
+            data-coauthors="Philippe Laban, Luke Dai, Marti Hearst"
+            data-full-title="Can Transformer Models Measure Coherence In Text? Re-Thinking the Shuffle Test"
+            data-summary="Revisits the shuffle test for measuring discourse coherence with transformer models. The paper examines whether models genuinely capture coherence or exploit artifacts in how incoherent examples are constructed."
+            data-links-arxiv="https://arxiv.org/abs/2107.03448"
+            data-links-code="https://github.com/tingofurro/shuffle_test">
         </article>
     </details>
 
-    <script src="garden.js?v=3"></script>
+    <script src="garden.js?v=4"></script>
     <script>
         // Read papers from HTML data attributes
         var papers = [];
@@ -308,7 +144,7 @@
             var $el = $(this);
             var paper = {
                 id: $el.data('id'),
-                title: $el.data('title'),
+                title: ($el.data('title') || '').replace(/\|/g, '\n'),
                 venue: $el.data('venue'),
                 url: $el.data('url'),
                 coauthors: $el.data('coauthors') ? $el.data('coauthors').split(', ') : [],
@@ -398,13 +234,13 @@
 
         // Generate JSON-LD structured data from the same HTML source
         var ldItems = papers.map(function(p) {
-            var authors = [{"@type": "Person", "name": "Philippe Laban"}];
+            var authors = [{"@type": "Person", "name": "Lucas Bandarkar"}];
             p.coauthors.forEach(function(c) { authors.push({"@type": "Person", "name": c}); });
             return {"@type": "ScholarlyArticle", "name": p.full_title, "url": p.url, "author": authors};
         });
         var ldScript = document.createElement('script');
         ldScript.type = 'application/ld+json';
-        ldScript.text = JSON.stringify({"@context": "https://schema.org", "@type": "ItemList", "name": "Philippe Laban's Research Publications", "itemListElement": ldItems});
+        ldScript.text = JSON.stringify({"@context": "https://schema.org", "@type": "ItemList", "name": "Lucas Bandarkar's Research Publications", "itemListElement": ldItems});
         document.head.appendChild(ldScript);
     </script>
 

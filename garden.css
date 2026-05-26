@@ -13,12 +13,6 @@
     /* background handled by SVG gradient */
     /* width: 1000px; */
 }
-#garden_title, #coauthor_hall_of_fame {
-}
-#coauthor_hall_of_fame {
-    max-width: 1000px;
-    margin: 0 auto;
-}
 #garden_title {
     margin-top: 50px;
     margin-bottom: 0;
@@ -116,42 +110,6 @@
     dominant-baseline: middle;
 }
 
-/* coauthor hall of fame */
-#coauthor_hall_of_fame {
-    margin-top: 20px;
-}
-#coauthor_title {
-    font-size: 24px;
-    font-weight: 500;
-    margin-bottom: 10px;
-    text-align: center;
-}
-#coauthor_list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-}
-.coauthor {
-    font-size: 17px;
-    padding: 4px 0;
-    width: calc(20% - 8px);
-    text-align: center;
-    line-height: 1.8;
-    cursor: pointer;
-    background: #f0f0f5;
-    border-radius: 16px;
-    transition: background-color 0.2s;
-    box-sizing: border-box;
-}
-.coauthor:hover {
-    background: #e0e0ee;
-}
-.selected_coauthor {
-    font-weight: 500;
-    background: #d8d8ee;
-    text-decoration: none;
-}
 /* paper modal */
 
 #paper_modal_backdrop {

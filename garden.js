@@ -45,7 +45,6 @@ function build_garden(papers) {
     $('#garden').width(garden_width).height(garden_height);
     $('#garden_container'); // .width(garden_width).height
     
-    calculate_coauthors(papers);
     renderGarden();
 }
 
@@ -194,7 +193,7 @@ function open_paper(paper_id) {
     $('#paper_modal_title').text(id2paper[paper_id].full_title);
     $('#paper_modal_venue').text("— " + id2paper[paper_id].venue);
     $('#paper_modal_content').text(id2paper[paper_id].summary);
-    var links = `<a href='${id2paper[paper_id].url}' target='_blank'>arXiv</a>`;
+    var links = `<a href='${id2paper[paper_id].url}' target='_blank'>Paper</a>`;
     if(id2paper[paper_id].additional_links) {
         for(var link_type of Object.keys(id2paper[paper_id].additional_links)) {
             links += `<a href="${id2paper[paper_id].additional_links[link_type]}" target="_blank">${link_type}</a>`;
@@ -312,43 +311,4 @@ function renderGarden() {
         const plantElement = createPlant(plant, x_pos, index);
         $('#garden').append(plantElement);
     });
-}
-function calculate_coauthors(papers) {
-    // count top 10 coauthors
-    var coauthor_counts = {};
-    for(var i = papers.length-1; i >= 0; i--) {
-        var paper = papers[i];
-        for(var coauthor of paper.coauthors) {
-            coauthor_counts[coauthor] = (coauthor_counts[coauthor] || 0) + 1;
-        }
-    }
-    // sort by count
-    var sorted_coauthors = Object.entries(coauthor_counts).sort((a, b) => b[1] - a[1]);
-    for(var i = 0; i < 10; i++) {
-        var coauthor = sorted_coauthors[i];
-        var coauthor_escaped = coauthor[0].replaceAll("'", "\\'");
-        $('#coauthor_list').append(`<div class="coauthor" onclick="select_coauthor('${coauthor_escaped}')">${coauthor[0]}</div>`);
-    }
-    // if there are no coauthors, hide the coauthor hall of fame
-    if(sorted_coauthors.length == 0) {
-        $('#coauthor_hall_of_fame').hide();
-    }
-}
-var selected_coauthor = null;
-function select_coauthor(coauthor) {
-    if(selected_coauthor == coauthor) {
-        selected_coauthor = null;
-    }
-    else {
-        selected_coauthor = coauthor;
-    }
-    // iterate over papers, and add a class `.selected_flower` to the flowers that have the coauthor
-    $('.flower').removeClass('selected_flower');
-    for(var paper of papers) {
-        if(paper.coauthors.includes(selected_coauthor)) {
-            $(`#flower_${paper.id}`).addClass('selected_flower');
-        }
-    }
-    $('.coauthor').removeClass('selected_coauthor');
-    $(`.coauthor:contains('${selected_coauthor}')`).addClass('selected_coauthor');
 }
