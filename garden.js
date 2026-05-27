@@ -34,6 +34,9 @@ function build_garden(papers) {
         }
         else {
             var parent = id2paper[paper.parent];
+            if(parent.label_side && !paper.label_side) {
+                paper.label_side = parent.label_side;
+            }
             if(!parent.children) {
                 parent.children = [];
             }
@@ -130,12 +133,13 @@ function drawPaperTree(parentElement, paper, x_offset, y_offset, plant_x_pos, pl
     if(paper.venue) {
         titleLines.push(paper.venue);
     }
-    var title_x_offset = (paper.is_left_child)?x_offset-30:x_offset+30;
+    var label_on_left = paper.label_side == "left" || paper.is_left_child;
+    var title_x_offset = label_on_left?x_offset-30:x_offset+30;
 
     titleLines.forEach((line, index) => {
         const tspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
         tspan.textContent = line;
-        tspan.setAttribute("class", `paper_label${index} ${paper.is_left_child ? "left_child_title" : ""}`);
+        tspan.setAttribute("class", `paper_label${index} ${label_on_left ? "left_child_title" : ""}`);
         tspan.setAttribute("x", title_x_offset);
         tspan.setAttribute("y", `${y_offset + 15 + (index)*20 - (0.5) * 20 * (titleLines.length)}`);
         label.appendChild(tspan);

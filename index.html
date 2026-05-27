@@ -45,7 +45,7 @@
         <!-- ===== Interpretability & Model Analysis (newest, leftmost) ===== -->
         <article class="paper-entry" data-id="multilingual_routing" data-title="Multilingual Routing|in MoEs" data-venue="ICLR 2026"
             data-url="https://openreview.net/forum?id=ZoZR0x7tTD"
-            data-root-node="1" data-root-name="Multilingual|Interpretability" data-root-color="#8FC7FF"
+            data-root-node="1" data-root-name="Multilingual|Interpretability" data-root-color="#8FC7FF" data-label-side="left"
             data-coauthors="Chenyuan Yang, Mohsen Fayyaz, Junlin Hu, Nanyun Peng"
             data-full-title="Multilingual Routing in Mixture-of-Experts"
             data-summary="Analyzes how MoE language models route multilingual inputs, finding language-specific routing at early and late layers and stronger cross-lingual alignment in the middle. The work connects routing similarity with multilingual performance and tests simple routing interventions that improve cross-lingual generalization."
@@ -106,7 +106,7 @@
             data-links-data="https://huggingface.co/datasets/facebook/belebele">
         </article>
 
-        <article class="paper-entry" data-id="translation_proxy" data-title="Translation as|Evaluation Proxy" data-venue="arXiv 2026"
+        <article class="paper-entry" data-id="translation_proxy" data-title="MT as Proxy|Evaluation" data-venue="arXiv 2026"
             data-url="https://arxiv.org/abs/2601.11778" data-parent="belebele"
             data-coauthors="Sheriff Issaka, Erick Rosas Gonzalez, Lieqi Liu, Evans Kofi Agyei, Nanyun Peng, David Ifeoluwa Adelani, Francisco Guzman, Saadia Gabriel"
             data-full-title="Translation as a Scalable Proxy for Multilingual Evaluation"
@@ -116,7 +116,7 @@
         <!-- ===== NLU Foundations & Event Extraction ===== -->
         <article class="paper-entry" data-id="headline_grouping" data-title="Headline Grouping" data-venue="NAACL 2021"
             data-url="https://aclanthology.org/2021.naacl-main.255/"
-            data-root-node="1" data-root-name="NLU Foundations &amp;|Event Extraction" data-root-color="#F28482"
+            data-root-node="1" data-root-name="NLU &amp;|Event Extraction" data-root-color="#F28482"
             data-coauthors="Philippe Laban, Marti Hearst"
             data-full-title="News Headline Grouping as a Challenging NLU Task"
             data-summary="Introduces headline grouping as an NLU task: deciding whether headlines refer to the same real-world event. The task is challenging because headlines compress, frame, and omit event details in ways that make semantic grouping non-trivial."
@@ -144,7 +144,7 @@
         </article>
     </details>
 
-    <script src="garden.js?v=8"></script>
+    <script src="garden.js?v=9"></script>
     <script>
         // Read papers from HTML data attributes
         var papers = [];
@@ -159,6 +159,7 @@
                 full_title: $el.data('full-title'),
                 summary: $el.data('summary')
             };
+            if ($el.data('label-side')) { paper.label_side = $el.data('label-side'); }
             if ($el.data('root-node')) { paper.root_node = 1; paper.root_name = ($el.data('root-name') || '').replace(/\|/g, '\n'); paper.root_color = $el.data('root-color'); }
             if ($el.data('parent')) { paper.parent = $el.data('parent'); }
             if ($el.data('is-left-child')) { paper.is_left_child = 1; }
