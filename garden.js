@@ -45,7 +45,8 @@ function build_garden(papers) {
     var garden_width = content_width;
     garden_x_offset = 0;
     $('#garden').width(garden_width).height(garden_height);
-    $('#garden_container'); // .width(garden_width).height
+    $('#garden_title').width(garden_width);
+    $('#garden_container').width(garden_width);
     
     renderGarden();
 }

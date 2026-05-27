@@ -20,8 +20,7 @@ body {
     font-family: "Libre Baskerville", Georgia, serif;
 }
 #garden_title {
-    margin-top: 24px;
-    margin-bottom: 0;
+    margin: 24px auto 0;
     background: linear-gradient(180deg, #eaeff8, #eef2fa);
     font-size: 42px;
     line-height: 78px;

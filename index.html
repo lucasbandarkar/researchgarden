@@ -5,7 +5,7 @@
     <meta name="google-site-verification" content="XilvwLQhsKzjrU7KUsndrYKzKy__exj0GnhpBgLZFHY" />
     <meta charset="UTF-8">
     <title>Lucas Bandarkar - Research Garden</title>
-    <link rel="stylesheet" href="garden.css?v=2">
+    <link rel="stylesheet" href="garden.css?v=3">
     <style id="flower_css"></style>
 </head>
 <body>
@@ -45,7 +45,7 @@
         <!-- ===== Interpretability & Model Analysis (newest, leftmost) ===== -->
         <article class="paper-entry" data-id="multilingual_routing" data-title="Multilingual Routing|in MoEs" data-venue="ICLR 2026"
             data-url="https://openreview.net/forum?id=ZoZR0x7tTD"
-            data-root-node="1" data-root-name="Multilingual Interpretability" data-root-color="#8FC7FF"
+            data-root-node="1" data-root-name="Multilingual|Interpretability" data-root-color="#8FC7FF"
             data-coauthors="Chenyuan Yang, Mohsen Fayyaz, Junlin Hu, Nanyun Peng"
             data-full-title="Multilingual Routing in Mixture-of-Experts"
             data-summary="Analyzes how MoE language models route multilingual inputs, finding language-specific routing at early and late layers and stronger cross-lingual alignment in the middle. The work connects routing similarity with multilingual performance and tests simple routing interventions that improve cross-lingual generalization."
@@ -53,7 +53,7 @@
             data-indirect-connections="knowledge_localization, mt_pruning">
         </article>
 
-        <article class="paper-entry" data-id="parametric_scripts" data-title="Cross-Script Knowledge|Transfer" data-venue="arXiv 2026"
+        <article class="paper-entry" data-id="parametric_scripts" data-title="Cross-Script|Knowledge Transfer" data-venue="arXiv 2026"
             data-url="https://arxiv.org/abs/2603.17070" data-parent="multilingual_routing"
             data-coauthors="Alan Ansell, Trevor Cohn"
             data-full-title="Large Reasoning Models Struggle to Transfer Parametric Knowledge Across Scripts"
@@ -63,20 +63,12 @@
         <!-- ===== Modularity for Cross-Lingual Transfer ===== -->
         <article class="paper-entry" data-id="layer_swapping" data-title="Layer Swapping|for XLT" data-venue="ICLR 2025 Spotlight"
             data-url="https://openreview.net/forum?id=vQhn4wrQ6j"
-            data-root-node="1" data-root-name="Using Modularity" data-root-color="#B5E48C"
+            data-root-node="1" data-root-name="Using|Modularity" data-root-color="#B5E48C"
             data-indirect-connections="multilingual_routing"
             data-coauthors="Benjamin Muller, Pritish Yuvraj, Rui Hou, Nayan Singhal, Hongjiang Lv, Bing Liu"
             data-full-title="Layer Swapping for Zero-Shot Cross-Lingual Transfer in Large Language Models"
             data-summary="Studies whether cross-lingual transfer can be improved by separating language-specific and task-specific parameters. The method swaps selected layers between models to transfer capabilities zero-shot across languages."
             data-links-arxiv="https://arxiv.org/abs/2410.01335">
-        </article>
-
-        <article class="paper-entry" data-id="model_merging" data-title="Model Merging|for XLT" data-venue="MRL at EMNLP 2025"
-            data-url="https://aclanthology.org/2025.mrl-main.10/" data-parent="layer_swapping"
-            data-coauthors="Nanyun Peng"
-            data-full-title="The Unreasonable Effectiveness of Model Merging for Cross-Lingual Transfer in LLMs"
-            data-summary="Investigates modular post-training and model merging for low-resource cross-lingual transfer. The paper finds that task and language capabilities can often be composed by training separate experts and merging them, with layer-swapping emerging as a surprisingly strong method."
-            data-links-arxiv="https://arxiv.org/abs/2505.18356">
         </article>
 
         <article class="paper-entry" data-id="knowledge_localization" data-title="Knowledge Localization|Using XL Inconsistency" data-venue="arXiv 2026"
@@ -93,10 +85,18 @@
             data-summary="">
         </article>
 
+        <article class="paper-entry" data-id="model_merging" data-title="Model Merging|for XLT" data-venue="MRL at EMNLP 2025"
+            data-url="https://aclanthology.org/2025.mrl-main.10/" data-parent="layer_swapping"
+            data-coauthors="Nanyun Peng"
+            data-full-title="The Unreasonable Effectiveness of Model Merging for Cross-Lingual Transfer in LLMs"
+            data-summary="Investigates modular post-training and model merging for low-resource cross-lingual transfer. The paper finds that task and language capabilities can often be composed by training separate experts and merging them, with layer-swapping emerging as a surprisingly strong method."
+            data-links-arxiv="https://arxiv.org/abs/2505.18356">
+        </article>
+
         <!-- ===== Multilingual Evaluations ===== -->
         <article class="paper-entry" data-id="belebele" data-title="Belebele|Parallel MRC" data-venue="ACL 2024"
             data-url="https://aclanthology.org/2024.acl-long.44/"
-            data-root-node="1" data-root-name="Multilingual Evaluations" data-root-color="#FFD166"
+            data-root-node="1" data-root-name="Multilingual|Evaluations" data-root-color="#FFD166"
             data-coauthors="Davis Liang, Benjamin Muller, Mikel Artetxe, Satya Narayan Shukla, Donald Husa, Naman Goyal, Abhinandan Krishnan, Luke Zettlemoyer, Madian Khabsa"
             data-full-title="The Belebele Benchmark: a Parallel Reading Comprehension Dataset in 122 Language Variants"
             data-summary="Introduces a fully parallel multiple-choice reading comprehension benchmark spanning 122 language variants. Belebele enables direct comparison of multilingual understanding across high-, medium-, and low-resource languages."
@@ -144,7 +144,7 @@
         </article>
     </details>
 
-    <script src="garden.js?v=7"></script>
+    <script src="garden.js?v=8"></script>
     <script>
         // Read papers from HTML data attributes
         var papers = [];
