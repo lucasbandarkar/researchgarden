@@ -19,10 +19,13 @@ const cloudWidth = 75, cloudHeight = 30, cloud_offset = 40;
 var research_garden = [];
 var id2paper = {};
 var garden_x_offset = 0;
+var indirect_connections_to_render = [];
 
 function build_garden(papers) {
     research_garden = [];
     id2paper = {};
+    flower_positions = {};
+    indirect_connections_to_render = [];
     for(var paper of papers) {
         id2paper[paper.id] = paper;
         
@@ -39,9 +42,8 @@ function build_garden(papers) {
     }
 
     var content_width = plantWidth*research_garden.length+100;
-    var viewport_width = $(window).width();
-    var garden_width = Math.max(content_width, viewport_width);
-    garden_x_offset = (garden_width - content_width) / 2;
+    var garden_width = content_width;
+    garden_x_offset = 0;
     $('#garden').width(garden_width).height(garden_height);
     $('#garden_container'); // .width(garden_width).height
     
@@ -169,14 +171,7 @@ function drawPaperTree(parentElement, paper, x_offset, y_offset, plant_x_pos, pl
 
     if (paper.indirect_connections) {
         paper.indirect_connections.forEach((indirect_connection) => {
-            const indirect_connection_pos = flower_positions[indirect_connection];
-            const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-            line.setAttribute("class", "indirect_connection");
-            line.setAttribute("x1", x_offset+plant_x_pos);
-            line.setAttribute("y1", y_offset+garden_height);
-            line.setAttribute("x2", indirect_connection_pos.x);
-            line.setAttribute("y2", indirect_connection_pos.y+garden_height);
-            $(".indirect-connections-group").append(line);
+            indirect_connections_to_render.push({source: paper.id, target: indirect_connection});
         });
     }
 
@@ -239,6 +234,9 @@ function renderGarden() {
             <stop offset="40%" stop-color="rgba(220,240,255,0.5)"/>
             <stop offset="100%" stop-color="rgba(180,215,255,0.15)"/>
         </radialGradient>
+        <marker id="indirect_arrowhead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 Z" fill="#139654" fill-opacity="0.55"/>
+        </marker>
     `;
     // Create petal gradients for each plant
     research_garden.forEach((plant, index) => {
@@ -312,5 +310,32 @@ function renderGarden() {
         const x_pos = garden_x_offset + (index + 0.5) * plantWidth;
         const plantElement = createPlant(plant, x_pos, index);
         $('#garden').append(plantElement);
+    });
+    drawIndirectConnections();
+}
+
+function drawIndirectConnections() {
+    indirect_connections_to_render.forEach((connection) => {
+        const source_pos = flower_positions[connection.source];
+        const target_pos = flower_positions[connection.target];
+        if(!source_pos || !target_pos) {
+            return;
+        }
+        const source_x = source_pos.x;
+        const source_y = source_pos.y+garden_height;
+        const target_x = target_pos.x;
+        const target_y = target_pos.y+garden_height;
+        const dx = target_x - source_x;
+        const dy = target_y - source_y;
+        const distance = Math.max(Math.sqrt(dx*dx + dy*dy), 1);
+        const target_padding = 24;
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("class", "indirect_connection");
+        line.setAttribute("x1", source_x);
+        line.setAttribute("y1", source_y);
+        line.setAttribute("x2", target_x - dx / distance * target_padding);
+        line.setAttribute("y2", target_y - dy / distance * target_padding);
+        line.setAttribute("marker-end", "url(#indirect_arrowhead)");
+        $(".indirect-connections-group").append(line);
     });
 }

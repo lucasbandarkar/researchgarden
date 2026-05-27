@@ -5,7 +5,7 @@
     <meta name="google-site-verification" content="XilvwLQhsKzjrU7KUsndrYKzKy__exj0GnhpBgLZFHY" />
     <meta charset="UTF-8">
     <title>Lucas Bandarkar - Research Garden</title>
-    <link rel="stylesheet" href="garden.css">
+    <link rel="stylesheet" href="garden.css?v=2">
     <style id="flower_css"></style>
 </head>
 <body>
@@ -40,26 +40,20 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Publication data as HTML (editable, crawlable, used by garden.js) -->
-    <details id="paper_data">
+    <details id="paper_data" hidden>
     <summary>Selected Publications (click to expand)</summary>
         <!-- ===== Interpretability & Model Analysis (newest, leftmost) ===== -->
-        <article class="paper-entry" data-id="multilingual_routing" data-title="Multilingual Routing|in MoE" data-venue="ICLR 2026"
+        <article class="paper-entry" data-id="multilingual_routing" data-title="Multilingual Routing|in MoEs" data-venue="ICLR 2026"
             data-url="https://openreview.net/forum?id=ZoZR0x7tTD"
-            data-root-node="1" data-root-name="Interpretability &amp;|Model Analysis" data-root-color="#8FC7FF"
+            data-root-node="1" data-root-name="Multilingual Interpretability" data-root-color="#8FC7FF"
             data-coauthors="Chenyuan Yang, Mohsen Fayyaz, Junlin Hu, Nanyun Peng"
             data-full-title="Multilingual Routing in Mixture-of-Experts"
             data-summary="Analyzes how MoE language models route multilingual inputs, finding language-specific routing at early and late layers and stronger cross-lingual alignment in the middle. The work connects routing similarity with multilingual performance and tests simple routing interventions that improve cross-lingual generalization."
-            data-links-arxiv="https://arxiv.org/abs/2510.04694">
+            data-links-arxiv="https://arxiv.org/abs/2510.04694"
+            data-indirect-connections="knowledge_localization, mt_pruning">
         </article>
 
-        <article class="paper-entry" data-id="knowledge_localization" data-title="Knowledge Localization|in MoE LLMs" data-venue="arXiv 2026"
-            data-url="https://arxiv.org/abs/2603.17102" data-parent="multilingual_routing" data-is-left-child="1"
-            data-coauthors="Alan Ansell, Trevor Cohn"
-            data-full-title="Knowledge Localization in Mixture-of-Experts LLMs Using Cross-Lingual Inconsistency"
-            data-summary="Uses cross-lingual inconsistency as an interpretability signal for MoE models. By contrasting languages where a model succeeds or fails on the same factual query, the method identifies small sets of experts that causally matter for recalling specific knowledge.">
-        </article>
-
-        <article class="paper-entry" data-id="parametric_scripts" data-title="Parametric Knowledge|Across Scripts" data-venue="arXiv 2026"
+        <article class="paper-entry" data-id="parametric_scripts" data-title="Cross-Script Knowledge|Transfer" data-venue="arXiv 2026"
             data-url="https://arxiv.org/abs/2603.17070" data-parent="multilingual_routing"
             data-coauthors="Alan Ansell, Trevor Cohn"
             data-full-title="Large Reasoning Models Struggle to Transfer Parametric Knowledge Across Scripts"
@@ -67,9 +61,9 @@
         </article>
 
         <!-- ===== Modularity for Cross-Lingual Transfer ===== -->
-        <article class="paper-entry" data-id="layer_swapping" data-title="Layer Swapping|for Zero-Shot XLT" data-venue="ICLR 2025 Spotlight"
+        <article class="paper-entry" data-id="layer_swapping" data-title="Layer Swapping|for XLT" data-venue="ICLR 2025 Spotlight"
             data-url="https://openreview.net/forum?id=vQhn4wrQ6j"
-            data-root-node="1" data-root-name="Modularity for|Cross-Lingual Transfer" data-root-color="#B5E48C"
+            data-root-node="1" data-root-name="Using Modularity" data-root-color="#B5E48C"
             data-indirect-connections="multilingual_routing"
             data-coauthors="Benjamin Muller, Pritish Yuvraj, Rui Hou, Nayan Singhal, Hongjiang Lv, Bing Liu"
             data-full-title="Layer Swapping for Zero-Shot Cross-Lingual Transfer in Large Language Models"
@@ -85,10 +79,24 @@
             data-links-arxiv="https://arxiv.org/abs/2505.18356">
         </article>
 
-        <!-- ===== Evaluation & Benchmarking ===== -->
-        <article class="paper-entry" data-id="belebele" data-title="Belebele|Benchmark" data-venue="ACL 2024"
+        <article class="paper-entry" data-id="knowledge_localization" data-title="Knowledge Localization|Using XL Inconsistency" data-venue="arXiv 2026"
+            data-url="https://arxiv.org/abs/2603.17102" data-parent="layer_swapping" data-is-left-child="1"
+            data-coauthors="Alan Ansell, Trevor Cohn"
+            data-full-title="Knowledge Localization in Mixture-of-Experts LLMs Using Cross-Lingual Inconsistency"
+            data-summary="Uses cross-lingual inconsistency as an interpretability signal for MoE models. By contrasting languages where a model succeeds or fails on the same factual query, the method identifies small sets of experts that causally matter for recalling specific knowledge.">
+        </article>
+
+        <article class="paper-entry" data-id="mt_pruning" data-title="Extracting MT Models|via Pruning" data-venue="arXiv 2026"
+            data-url="https://arxiv.org/abs/tbd" data-parent="knowledge_localization" data-is-left-child="1"
+            data-coauthors="Liu Martin, Nanyun Peng"
+            data-full-title="Extracting Small Translation Specialists from LLMs by Aggressively Pruning Experts"
+            data-summary="">
+        </article>
+
+        <!-- ===== Multilingual Evaluations ===== -->
+        <article class="paper-entry" data-id="belebele" data-title="Belebele|Parallel MRC" data-venue="ACL 2024"
             data-url="https://aclanthology.org/2024.acl-long.44/"
-            data-root-node="1" data-root-name="Evaluation &amp;|Benchmarking" data-root-color="#FFD166"
+            data-root-node="1" data-root-name="Multilingual Evaluations" data-root-color="#FFD166"
             data-coauthors="Davis Liang, Benjamin Muller, Mikel Artetxe, Satya Narayan Shukla, Donald Husa, Naman Goyal, Abhinandan Krishnan, Luke Zettlemoyer, Madian Khabsa"
             data-full-title="The Belebele Benchmark: a Parallel Reading Comprehension Dataset in 122 Language Variants"
             data-summary="Introduces a fully parallel multiple-choice reading comprehension benchmark spanning 122 language variants. Belebele enables direct comparison of multilingual understanding across high-, medium-, and low-resource languages."
@@ -126,7 +134,7 @@
             data-links-code="https://github.com/PlusLabNLP/SNaRe">
         </article>
 
-        <article class="paper-entry" data-id="coherence_shuffle" data-title="Coherence &amp;|Shuffle Test" data-venue="ACL 2021"
+        <article class="paper-entry" data-id="coherence_shuffle" data-title="Measuring Coherence &amp;|Shuffle Test" data-venue="ACL 2021"
             data-url="https://aclanthology.org/2021.acl-short.134/" data-parent="headline_grouping"
             data-coauthors="Philippe Laban, Luke Dai, Marti Hearst"
             data-full-title="Can Transformer Models Measure Coherence In Text? Re-Thinking the Shuffle Test"
@@ -136,7 +144,7 @@
         </article>
     </details>
 
-    <script src="garden.js?v=5"></script>
+    <script src="garden.js?v=7"></script>
     <script>
         // Read papers from HTML data attributes
         var papers = [];

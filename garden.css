@@ -1,5 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900');
-@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap');
+
+body {
+    font-family: "Libre Baskerville", Georgia, serif;
+}
 
 #garden_container {
     margin: 0 auto;
@@ -13,6 +16,9 @@
     /* background handled by SVG gradient */
     /* width: 1000px; */
 }
+#garden text {
+    font-family: "Libre Baskerville", Georgia, serif;
+}
 #garden_title {
     margin-top: 24px;
     margin-bottom: 0;
@@ -24,7 +30,7 @@
     text-align: center;
     width: 100%;
     color: #213269;
-    font-family: "Roboto Condensed";
+    font-family: "Libre Baskerville", Georgia, serif;
     text-shadow: 0 1px 4px rgba(33, 50, 105, 0.1);
 }
 .grass {
@@ -102,7 +108,7 @@
     stroke-dasharray: 4 3;
 }
 .title {
-    font-family: "Roboto Condensed";
+    font-family: "Libre Baskerville", Georgia, serif;
     font-size: 50px;
     font-weight: 700;
     fill: #213269;
@@ -141,6 +147,7 @@
     display: none;
     border-radius: 12px;
     border: 1px solid rgba(0, 0, 0, 0.06);
+    font-family: "Libre Baskerville", Georgia, serif;
 }
 #paper_modal_close {
     position: absolute;
@@ -197,6 +204,7 @@
     font-weight: 500;
     text-decoration: none;
     transition: background-color 0.2s;
+    font-family: "Libre Baskerville", Georgia, serif;
 }
 #paper_modal_links a:hover {
     background: #e0e0ee;
@@ -209,7 +217,7 @@
     font-size: 14px;
     color: #999;
     padding: 8px 0;
-    font-family: "Roboto Condensed";
+    font-family: "Libre Baskerville", Georgia, serif;
     letter-spacing: 1px;
 }
 #garden_title_scroll_hint {
