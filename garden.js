@@ -44,9 +44,9 @@ function build_garden(papers) {
         }
     }
 
-    var content_width = plantWidth*research_garden.length+100;
+    var content_width = plantWidth*research_garden.length+160;
     var garden_width = content_width;
-    garden_x_offset = 0;
+    garden_x_offset = 70;
     $('#garden').width(garden_width).height(garden_height);
     $('#garden_title').width(garden_width);
     $('#garden_container').width(garden_width);
@@ -133,7 +133,7 @@ function drawPaperTree(parentElement, paper, x_offset, y_offset, plant_x_pos, pl
     if(paper.venue) {
         titleLines.push(paper.venue);
     }
-    var label_on_left = paper.label_side == "left" || paper.is_left_child;
+    var label_on_left = paper.label_side == "left" || (paper.label_side != "right" && paper.is_left_child);
     var title_x_offset = label_on_left?x_offset-30:x_offset+30;
 
     titleLines.forEach((line, index) => {
