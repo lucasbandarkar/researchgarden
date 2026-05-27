@@ -140,8 +140,11 @@ function drawPaperTree(parentElement, paper, x_offset, y_offset, plant_x_pos, pl
     titleLines.forEach((line, index) => {
         const tspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
         tspan.textContent = line;
-        var label_kind = index < titleLineCount ? "paper_title_label" : "paper_venue_label";
+        var is_title_line = index < titleLineCount;
+        var label_kind = is_title_line ? "paper_title_label" : "paper_venue_label";
         tspan.setAttribute("class", `paper_label${index} ${label_kind} ${label_on_left ? "left_child_title" : ""}`);
+        tspan.setAttribute("font-weight", is_title_line ? "700" : "400");
+        tspan.style.fontWeight = is_title_line ? "700" : "400";
         tspan.setAttribute("x", title_x_offset);
         tspan.setAttribute("y", `${y_offset + 15 + (index)*20 - (0.5) * 20 * (titleLines.length)}`);
         label.appendChild(tspan);
