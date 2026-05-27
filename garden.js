@@ -130,6 +130,7 @@ function drawPaperTree(parentElement, paper, x_offset, y_offset, plant_x_pos, pl
 
     // add the venue to the title_lines
     var titleLines = paper.title.split('\n');
+    var titleLineCount = titleLines.length;
     if(paper.venue) {
         titleLines.push(paper.venue);
     }
@@ -139,7 +140,8 @@ function drawPaperTree(parentElement, paper, x_offset, y_offset, plant_x_pos, pl
     titleLines.forEach((line, index) => {
         const tspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
         tspan.textContent = line;
-        tspan.setAttribute("class", `paper_label${index} ${label_on_left ? "left_child_title" : ""}`);
+        var label_kind = index < titleLineCount ? "paper_title_label" : "paper_venue_label";
+        tspan.setAttribute("class", `paper_label${index} ${label_kind} ${label_on_left ? "left_child_title" : ""}`);
         tspan.setAttribute("x", title_x_offset);
         tspan.setAttribute("y", `${y_offset + 15 + (index)*20 - (0.5) * 20 * (titleLines.length)}`);
         label.appendChild(tspan);

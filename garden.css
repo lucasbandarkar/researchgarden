@@ -90,13 +90,17 @@ body {
 }
 .paper_label0 {
     cursor: pointer;
-    font-weight: 500;
     font-size: 16px;
 }
 .paper_label1, .paper_label2, .paper_label3 {
     cursor: pointer;
-    font-weight: 300;
     font-size: 14px;
+}
+.paper_title_label {
+    font-weight: 700;
+}
+.paper_venue_label {
+    font-weight: 400;
 }
 .left_child_title {
     text-anchor: end;
