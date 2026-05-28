@@ -146,7 +146,7 @@ function drawPaperTree(parentElement, paper, x_offset, y_offset, plant_x_pos, pl
         tspan.setAttribute("font-weight", is_title_line ? "700" : "400");
         tspan.style.fontWeight = is_title_line ? "700" : "400";
         tspan.setAttribute("x", title_x_offset);
-        tspan.setAttribute("y", `${y_offset + 15 + (index)*20 - (0.5) * 20 * (titleLines.length)}`);
+        tspan.setAttribute("y", `${y_offset + paper.label_y_offset + 15 + (index)*20 - (0.5) * 20 * (titleLines.length)}`);
         label.appendChild(tspan);
     });
 

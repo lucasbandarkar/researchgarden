@@ -27,6 +27,7 @@
         <svg id="garden" preserveAspectRatio="xMinYMin meet"></svg>
      </div>
      <div id="garden_scroll_hint">← scroll to explore →</div>
+     <div id="garden_attribution">garden inspired by <a href="https://tingofurro.github.io" target="_blank" rel="noopener noreferrer">Philippe's</a></div>
     <div id="paper_modal_backdrop" onclick="$('#paper_modal').fadeOut(200); $('#paper_modal_backdrop').fadeOut(200);"></div>
     <div id="paper_modal">
         <!-- a close icon at the top right -->
@@ -108,6 +109,7 @@
 
         <article class="paper-entry" data-id="translation_proxy" data-title="MT as Proxy Eval" data-venue="arXiv 2026"
             data-url="https://arxiv.org/abs/2601.11778" data-parent="belebele"
+            data-label-y-offset="-8"
             data-coauthors="Sheriff Issaka, Erick Rosas Gonzalez, Lieqi Liu, Evans Kofi Agyei, Nanyun Peng, David Ifeoluwa Adelani, Francisco Guzman, Saadia Gabriel"
             data-full-title="Translation as a Scalable Proxy for Multilingual Evaluation"
             data-summary="Tests whether translation quality can serve as a scalable first-pass proxy for broader multilingual capability. Across many models, benchmarks, and translation metrics, the paper finds strong correlations between translation performance and downstream multilingual task success.">
@@ -127,6 +129,7 @@
 
         <article class="paper-entry" data-id="snare" data-title="SNaRe" data-venue="EMNLP 2025"
             data-url="https://aclanthology.org/2025.emnlp-main.1039/" data-parent="headline_grouping"
+            data-label-y-offset="8"
             data-coauthors="Tanmay Parekh, Yuxuan Dong, Artin Kim, I-Hung Hsu, Kai-Wei Chang, Nanyun Peng"
             data-full-title="SNaRe: Domain-aware Data Generation for Low-Resource Event Detection"
             data-summary="Develops domain-aware data generation for low-resource event detection. The work targets event extraction settings where labeled domain-specific data is scarce and uses generation to improve detection performance."
@@ -157,7 +160,8 @@
                 url: $el.data('url'),
                 coauthors: $el.data('coauthors') ? $el.data('coauthors').split(', ') : [],
                 full_title: $el.data('full-title'),
-                summary: $el.data('summary')
+                summary: $el.data('summary'),
+                label_y_offset: parseFloat($el.data('label-y-offset')) || 0
             };
             if ($el.data('label-side')) { paper.label_side = $el.data('label-side'); }
             if ($el.data('root-node')) { paper.root_node = 1; paper.root_name = ($el.data('root-name') || '').replace(/\|/g, '\n'); paper.root_color = $el.data('root-color'); }
