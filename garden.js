@@ -46,7 +46,7 @@ function build_garden(papers) {
 
     var content_width = plantWidth*research_garden.length+160;
     var garden_width = content_width;
-    garden_x_offset = 70;
+    garden_x_offset = 80;
     $('#garden').width(garden_width).height(garden_height);
     $('#garden_title').width(garden_width);
     $('#garden_container').width(garden_width);
@@ -196,10 +196,12 @@ function open_paper(paper_id) {
     $('#paper_modal_backdrop').fadeIn(200);
     $('#paper_modal').fadeIn(200);
     var paper = id2paper[paper_id];
-    var authors = ["Lucas Bandarkar"].concat(paper.coauthors || []);
+    var coauthors = (paper.coauthors || []).filter(function(author) {
+        return author.trim().toLowerCase() !== "lucas bandarkar";
+    });
     $('#paper_modal_title').text(paper.full_title);
     $('#paper_modal_venue').text("— " + paper.venue);
-    $('#paper_modal_content').text("Authors: " + authors.join(", "));
+    $('#paper_modal_content').text("Co-Authors: " + coauthors.join(", "));
     var links = `<a href='${paper.url}' target='_blank'>Paper</a>`;
     if(paper.additional_links) {
         for(var link_type of Object.keys(paper.additional_links)) {
