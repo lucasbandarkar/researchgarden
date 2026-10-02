@@ -28,21 +28,24 @@ function build_garden(papers) {
     indirect_connections_to_render = [];
     for(var paper of papers) {
         id2paper[paper.id] = paper;
-        
+        paper.children = [];
+    }
+    // Register all papers before linking them: a child may appear before its parent.
+    for(var paper of papers) {
         if(paper.root_node) {
             research_garden.push({plant_name: paper.root_name, flower_color: paper.root_color, papers: [paper]});
         }
         else {
             var parent = id2paper[paper.parent];
-            if(parent.label_side && !paper.label_side) {
-                paper.label_side = parent.label_side;
-            }
-            if(!parent.children) {
-                parent.children = [];
-            }
             parent.children.push(paper);
         }
     }
+
+    function treeDepth(paper) {
+        return paper.children.length ? 1 + Math.max(...paper.children.map(treeDepth)) : 0;
+    }
+    var max_depth = Math.max(0, ...research_garden.map(plant => treeDepth(plant.papers[0])));
+    garden_height = Math.max(390, root_offset + root_stem_height + max_depth * stem_height + 100);
 
     var content_width = plantWidth*research_garden.length+160;
     var garden_width = content_width;
@@ -100,6 +103,11 @@ function get_whiter_color(color, factor) {
     return `#${r.toString(16).padStart(2,'0')}${g.toString(16).padStart(2,'0')}${b.toString(16).padStart(2,'0')}`;
 }
 function drawPaperTree(parentElement, paper, x_offset, y_offset, plant_x_pos, plant_index) {
+    // Parents are drawn first, so inherited label placement is independent of data order.
+    var parent = id2paper[paper.parent];
+    if(parent && parent.label_side && !paper.label_side) {
+        paper.label_side = parent.label_side;
+    }
     flower_positions[paper.id] = {x: x_offset+plant_x_pos, y: y_offset};
 
     paper.flower_color = parentElement.flower_color;            
@@ -146,7 +154,7 @@ function drawPaperTree(parentElement, paper, x_offset, y_offset, plant_x_pos, pl
         tspan.setAttribute("font-weight", is_title_line ? "700" : "400");
         tspan.style.fontWeight = is_title_line ? "700" : "400";
         tspan.setAttribute("x", title_x_offset);
-        tspan.setAttribute("y", `${y_offset + paper.label_y_offset + 15 + (index)*20 - (0.5) * 20 * (titleLines.length)}`);
+        tspan.setAttribute("y", `${y_offset + (paper.label_y_offset || 0) + 15 + (index)*20 - (0.5) * 20 * (titleLines.length)}`);
         label.appendChild(tspan);
     });
 
